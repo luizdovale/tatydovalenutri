@@ -1,25 +1,13 @@
 <<<<<<< HEAD
 ⸻
 
-💻 Bem-vindo ao seu projeto Lovable
+💻 Bem-vindo ao seu projeto 
 
 Informações do Projeto
-
-URL: https://lovable.dev/projects/d351ba1e-fa35-4eef-a308-e36d348b0a6b
-
-⸻
 
 🚀 Como editar este código
 
 Existem várias maneiras de editar sua aplicação:
-
-⸻
-
-🧠 Usando o Lovable
-
-Basta acessar o projeto no Lovable e começar a enviar prompts.
-As alterações feitas pelo Lovable serão automaticamente enviadas (committed) para este repositório.
-
 ⸻
 
 💻 Usando seu editor de código favorito (IDE)
@@ -73,11 +61,6 @@ Este projeto foi desenvolvido com:
 
 ⸻
 
-🌐 Como publicar este projeto
-
-Abra o Lovable e clique em Share → Publish para publicar seu site.
-
-⸻
 
 🔗 Como conectar um domínio personalizado ao seu projeto Lovable
 
@@ -94,5 +77,3 @@ Projeto: Landing Page Tatiane do Vale Nutricionista
 Proprietário: luizdovale
 
 ⸻
-
-Deseja que eu já insira esse texto formatado (por exemplo em um README.md pronto para colocar no GitHub)?
