@@ -13,21 +13,57 @@ const Contact = () => {
     message: "",
   });
 
-  // Validação antes do envio
-  const handleValidation = (e: React.FormEvent) => {
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (!formData.name || !formData.email || !formData.message) {
-      e.preventDefault();
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha todos os campos.",
         variant: "destructive",
       });
-    } else {
-      toast({
-        title: "Mensagem enviada!",
-        description: "Entrarei em contato em breve. Obrigada!",
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/tatianedovale.nutri@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          Nome: formData.name,
+          Email: formData.email,
+          Mensagem: formData.message,
+        }),
       });
-      setFormData({ name: "", email: "", message: "" });
+
+      if (response.ok) {
+        toast({
+          title: "Mensagem enviada!",
+          description: "Entrarei em contato em breve. Obrigada!",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        toast({
+          title: "Erro ao enviar",
+          description: "Tente novamente em alguns instantes.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Erro inesperado",
+        description: "Verifique sua conexão e tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -117,27 +153,11 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* ======== FORMULÁRIO FUNCIONAL ======== */}
           <div className="animate-fade-in">
             <form
-              action="https://formsubmit.co/tatianedovale.nutri@gmail.com"
-              method="POST"
-              onSubmit={handleValidation}
+              onSubmit={handleSubmit}
               className="bg-background p-8 rounded-2xl shadow-soft space-y-6"
             >
-              {/* Configuração do FormSubmit */}
-              <input
-                type="hidden"
-                name="_next"
-                value="https://tatydovalenutri.vercel.app/obrigado.html"
-              />
-              <input
-                type="hidden"
-                name="_subject"
-                value="Novo contato recebido pelo site Tatiane do Vale!"
-              />
-              <input type="hidden" name="_captcha" value="false" />
-
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Nome completo
@@ -199,10 +219,13 @@ const Contact = () => {
               <Button
                 type="submit"
                 size="lg"
+                disabled={isSending}
                 className="w-full gradient-primary text-white hover:opacity-90 text-lg group"
               >
-                Enviar mensagem
-                <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-smooth" />
+                {isSending ? "Enviando..." : "Enviar mensagem"}
+                {!isSending && (
+                  <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-smooth" />
+                )}
               </Button>
             </form>
           </div>
