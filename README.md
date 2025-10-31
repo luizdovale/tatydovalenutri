@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+https://luizdovale.github.io/tatydovalenutri/
 ⸻
 
 💻 Bem-vindo ao seu projeto 
