@@ -13,26 +13,22 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validação básica
+  // Validação antes do envio
+  const handleValidation = (e: React.FormEvent) => {
     if (!formData.name || !formData.email || !formData.message) {
+      e.preventDefault();
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha todos os campos.",
         variant: "destructive",
       });
-      return;
+    } else {
+      toast({
+        title: "Mensagem enviada!",
+        description: "Entrarei em contato em breve. Obrigada!",
+      });
+      setFormData({ name: "", email: "", message: "" });
     }
-
-    // Simulação de envio
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entrarei em contato em breve. Obrigada!",
-    });
-
-    setFormData({ name: "", email: "", message: "" });
   };
 
   const contactInfo = [
@@ -93,7 +89,11 @@ const Contact = () => {
                         href={item.link}
                         className="font-semibold text-foreground hover:text-primary transition-smooth"
                         target={item.icon === Instagram ? "_blank" : undefined}
-                        rel={item.icon === Instagram ? "noopener noreferrer" : undefined}
+                        rel={
+                          item.icon === Instagram
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                       >
                         {item.value}
                       </a>
@@ -117,32 +117,54 @@ const Contact = () => {
             </div>
           </div>
 
+          {/* ======== FORMULÁRIO FUNCIONAL ======== */}
           <div className="animate-fade-in">
             <form
-              onSubmit={handleSubmit}
+              action="https://formsubmit.co/tatianedovale.nutri@gmail.com"
+              method="POST"
+              onSubmit={handleValidation}
               className="bg-background p-8 rounded-2xl shadow-soft space-y-6"
             >
+              {/* Configuração do FormSubmit */}
+              <input
+                type="hidden"
+                name="_next"
+                value="https://tatydovalenutri.vercel.app/obrigado.html"
+              />
+              <input
+                type="hidden"
+                name="_subject"
+                value="Novo contato recebido pelo site Tatiane do Vale!"
+              />
+              <input type="hidden" name="_captcha" value="false" />
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Nome completo
                 </label>
                 <Input
                   id="name"
+                  name="name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
                   placeholder="Seu nome"
                   className="border-2"
+                  required
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
                   E-mail
                 </label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) =>
@@ -150,21 +172,27 @@ const Contact = () => {
                   }
                   placeholder="seu@email.com"
                   className="border-2"
+                  required
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
                   Mensagem
                 </label>
                 <Textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
                   placeholder="Conte um pouco sobre seus objetivos..."
                   className="border-2 min-h-[150px]"
+                  required
                 />
               </div>
 
