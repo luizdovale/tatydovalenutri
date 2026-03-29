@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://jornada360.vercel.app/">
+    <img src="https://lh3.googleusercontent.com/pw/AP1GczPhGnFVCsJDN6QkM968cClyfRPNDGlNa81MhyateI-M4S5CRvcVdFuaMesaeSEn6q6ChfM8pWnPQJKLUXfA2EDta9_GfXeR0nVxp05YsKLhKu5Q1yh-vLv-lstCOVbQiEd6xmD7B7KuI8uDL1x0nj5Q=w1366-h434-s-no-gm?authuser=2" />
+  </a>
+</p>
+
 https://tatydovalenutri.vercel.app
 ⸻
 
@@ -77,3 +83,19 @@ Projeto: Landing Page Tatiane do Vale Nutricionista
 Proprietário: luizdovale
 
 ⸻
+
+---
+## 👨‍💻 Desenvolvido por
+
+**luizdovaletech**
+📧 *[luizdovaletech@gmail.com](mailto:luizdovaletech@gmail.com)*
+
+---
+## 👨‍💻 Site do Desenvolvedor
+
+Luiz Fernando  
+🌐 https://valetechsolucoes.com.br
+## 📝 Licença
+---
+
+Este projeto está licenciado sob **MIT License**.
